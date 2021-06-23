@@ -1,0 +1,94 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
+
+    
+    int num1,num2;
+    
+        int crntnodeval,carry=0;
+    
+    struct ListNode* head = (struct ListNode*)malloc(sizeof(struct ListNode));
+      struct ListNode* temp = head;
+    int hflag =0;
+    while (l1!=NULL || l2!=NULL){
+        
+        if(l1 == NULL){
+            num1 = 0;
+        }
+        else{
+            num1 = l1->val;
+            l1=l1->next;
+        }
+        
+        if(l2 == NULL){
+            num2 = 0;
+        }else{
+            num2 = l2->val;
+            l2 = l2->next;
+        }
+         
+            
+        if((num1 + num2+carry)>=10){
+            
+            crntnodeval = (num1+num2+carry)-10;
+            //printf("\n%d",crntnodeval);
+            carry =1 ;
+            
+        }
+        else{
+            
+            crntnodeval = num1+num2+carry;
+            //printf("\n%d",crntnodeval);
+            carry = 0;
+        }
+        
+        
+        if(hflag == 0){
+          
+            head->val = crntnodeval;
+            head->next = NULL;
+            hflag = -1;
+            temp = head;
+            
+            
+        }
+        else{
+            
+            struct ListNode* newnode = (struct ListNode*)malloc(sizeof(struct ListNode));
+            newnode->val = crntnodeval;
+            newnode->next = NULL;
+            temp ->next = newnode;
+            temp = temp->next;
+          
+            
+            
+        }
+        
+    }  
+    
+    
+    if(carry > 0){
+        struct ListNode* newnode = (struct ListNode*)malloc(sizeof(struct ListNode));
+            newnode->val = carry;
+            newnode->next = NULL;
+            temp ->next = newnode;
+            temp = temp->next;
+          
+    }
+    
+    
+    return head;    
+        
+    }
+    
+    
+    
+    
+    
