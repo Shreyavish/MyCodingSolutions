@@ -1,0 +1,30 @@
+   // check gfg and techdose this is my own code after referring techdose
+   
+   
+   vector<int> subarraySum(int arr[], int n, long long s)
+    {
+        // Your code here
+        
+        int l=0,r=-1;
+        long long sum=0;
+        vector<int> ans={};
+        while(r < n){
+            
+            if(sum < s)
+            {
+               r++;
+               sum = sum +arr[r];
+            }
+            else if(sum > s){
+                sum = sum - arr[l];
+                l++;
+            }
+            else{
+                ans.push_back(l+1);
+                ans.push_back(r+1);
+                return ans;
+            }
+            
+        }
+        return {-1};
+    }
